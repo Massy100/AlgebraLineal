@@ -82,3 +82,5 @@ elif seleccion == 3:
             print('X:', round(x, 2), '\nY:', round(y, 2), '\nZ:', round(z, 2))
     except(ZeroDivisionError):
         print('No tiene solucion, div Cero')
+        
+     
