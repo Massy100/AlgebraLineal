@@ -1,3 +1,19 @@
+import sys
+sys.path.append('c:\\Users\\Massielle\\Documents\\UNIVERSIDAD\\Algebra Lineal\\AlgebraLineal')
+
+# Clave 
+clave = [
+    [-1, 1, 1],
+    [-2, -3, 1],
+    [3, 1, -2]
+    ]
+    
+# Clave Inversa
+clave_inversa = [
+    [5, 3, 4],
+    [-1, -1, -1],
+    [7, 4, 5]
+    ]
 def codificar_mensaje(mensaje):
     # Crear un diccionario para mapear cada letra a un número
     alfabeto = "abcdefghijklmnñopqrstuvwxyz "
@@ -83,20 +99,10 @@ def decodificar_mensaje(mensaje_codificado):
     
     return mensaje_decodificado
 
-def main():
-    # Clave 
-    clave = [
-    [-1, 1, 1],
-    [-2, -3, 1],
-    [3, 1, -2]
-    ]
-    
-    # Clave Inversa
-    clave_inversa = [
-    [5, 3, 4],
-    [-1, -1, -1],
-    [7, 4, 5]
-    ]
+def calcular_matriz_inversa():
+    from MatrizInversa.matriz_inversa import MatrizInversa
+
+def matriz_inversa():
     
     # Pedir al usuario que ingrese el mensaje a codificar y reordenar
     mensaje_usuario = input("Ingresa el mensaje a codificar: ")
@@ -154,5 +160,5 @@ def main():
     print("Mensaje decodificado:", mensaje_decodificado)
     
     
-main()
+matriz_inversa()
 
