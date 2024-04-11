@@ -30,8 +30,8 @@ def multiplicar_matrices(a, b):
     return resultado
 
 # Solicitar las dimensiones de la matriz al usuario
-filas = int(input("Por favor, ingresa el número de filas de la matriz: "))
-columnas = int(input("Ahora, ingresa el número de columnas de la matriz: "))
+filas = int(input("Ingresa el número de filas de la matriz: "))
+columnas = int(input("Ingresa el número de columnas de la matriz: "))
 
 # Crear la matriz con los valores proporcionados por el usuario
 matriz = crear_matriz(filas, columnas)
@@ -61,7 +61,7 @@ else:
     veces = int(input("¿Cuántas veces deseas multiplicar la matriz traspuesta por el resultado obtenido? "))
 
     # Imprimir el resultado inicial de la multiplicación
-    print("\nResultado inicial de la multiplicación de la MATRIZ TRASPUESTA por las condiciones iniciales:")
+    print("\nResultado inicial de la multiplicación de la matriz traspuesta por las condiciones iniciales:")
     for fila in resultado_multiplicacion:
         print(fila)
     
