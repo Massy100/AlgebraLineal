@@ -1,49 +1,51 @@
-def creat_matrix(x_can, y_can):
-    matris = []
-    for x in range(x_can):
-        fila = []
-        for y in range(y_can):
-            columna = int(input(f'Ingresa en la casilla {x + 1},{y + 1}: '))
-            fila.append(columna)
-        matris.append(fila)
+def create_matrix(rows, cols):
+    matrix = []
+    for x in range(rows):
+        row = []
+        for y in range(cols):
+            entry = float(input(f'Ingresa en la casilla {x + 1},{y + 1}: '))
+            row.append(entry)
+        matrix.append(row)
 
-    for fil in matris:
-        print(fil)
-    return matris
-
-
-def operar_matrix(x1, y2, m1, m2):
-    matris = []
-    for x2 in range(x1):
-        fila = []
-        for x in range(x1):
-            columna = 0
-            for y in range(y2):
-                columna += m1[x2][y] * m2[y][x]
-            fila.append(columna)
-        matris.append(fila)
-    print('\nMatris:')
-    for fil in matris:
-        print(fil)
-    return matris
+    for row in matrix:
+        print(row)
+    return matrix
 
 
-def imprimir_matrix(x1, y2, m1, m2):
-    matris = []
-    for x2 in range(x1):
-        fila = []
-        for x in range(x1):
-            columna = str()
-            for y in range(y2):
-                columna += '(' + str(m1[x2][y]) + ' * ' + str(m2[y][x]) + ')'
-                if y != y2 - 1:
-                    columna += ' + '
-            fila.append(columna)
-        matris.append(fila)
-    print('\nMatris:')
-    for fil in matris:
-        print(fil)
-    return matris
+def multiply_matrices(rows, cols, m1, m2):
+    result_matrix = []
+    for i in range(rows):
+        result_row = []
+        for j in range(cols):
+            cell_sum = 0
+            for k in range(len(m2)):
+                cell_sum += m1[i][k] * m2[k][j]
+            result_row.append(cell_sum)
+        result_matrix.append(result_row)
+
+    print('\nResultado de la multiplicación:')
+    for row in result_matrix:
+        print(row)
+    return result_matrix
+
+
+def print_multiplication_process(rows, cols, m1, m2):
+    expression_matrix = []
+    for i in range(rows):
+        expression_row = []
+        for j in range(cols):
+            expression = ''
+            for k in range(len(m2)):
+                expression += f'({m1[i][k]} * {m2[k][j]})'
+                if k != len(m2) - 1:
+                    expression += ' + '
+            expression_row.append(expression)
+        expression_matrix.append(expression_row)
+
+    print('\nExpresiones de la multiplicación:')
+    for row in expression_matrix:
+        print(row)
+    return expression_matrix
 
 
 def main():
@@ -52,12 +54,11 @@ def main():
     x2 = int(input('Cuantas filas tiene la matriz 2: '))
     y2 = int(input('Cuantas columnas tiene la matriz 2: '))
     if y1 == x2:
-        matris1 = creat_matrix(x1, y1)
-        matris2 = creat_matrix(x2, y2)
-        imprimir_matrix(x1, y2, matris1, matris2)
-        operar_matrix(x1, y2, matris1, matris2)
+        matrix1 = create_matrix(x1, y1)
+        matrix2 = create_matrix(x2, y2)
+        print_multiplication_process(x1, y2, matrix1, matrix2)
+        multiply_matrices(x1, y2, matrix1, matrix2)
     else:
-        print('No es posible')
-
+        print('No es posible multiplicar las matrices porque el número de columnas de la primera no coincide con el número de filas de la segunda.')
 
 main()

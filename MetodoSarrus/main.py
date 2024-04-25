@@ -9,11 +9,25 @@ def imprecion(fila1, fila2, fila3):
           f'Columna 2: {fila2} '
           f'Columna 3: {fila3}')
     print('(' +
+          str((f'({fila1[0]} * {fila2[1]} * {fila3[2]})')) +
+          ' + ' +
+          str((f'({fila1[1]} * {fila2[2]} * {fila3[0]})')) +
+          ' + ' +
+          str((f'({fila1[2]} * {fila2[0]} * {fila3[1]})')) +
+          ') - (' +
+          str((f'({fila1[2]} * {fila2[1]} * {fila3[0]})')) +
+          ' + ' +
+          str((f'({fila1[0]} * {fila2[2]} * {fila3[1]})')) +
+          ' + ' +
+          str((f'({fila1[1]} * {fila2[0]} * {fila3[2]})')) +
+          ')')
+
+    print('(' +
           str((fila1[0] * fila2[1] * fila3[2])) +
           ' + ' +
-          str((fila2[0] * fila3[1] * fila1[2])) +
-          ' + ' +
           str((fila3[0] * fila1[1] * fila2[2])) +
+          ' + ' +
+          str((fila2[0] * fila3[1] * fila1[2])) +
           ') - (' +
           str((fila1[2] * fila2[1] * fila3[0])) +
           ' + ' +
