@@ -9,8 +9,7 @@ def solicitar_valores_matriz(filas, columnas):
         if len(fila) != columnas:
             print("Error: El número de columnas no coincide.")
             return
-        # Cambiar int(x) por float(x) para manejar números decimales
-        fila = [float(x) for x in fila]
+        fila = [float(x) for x in fila]  # Cambio para manejar números decimales
         matriz.append(fila)
     return matriz
 
@@ -20,6 +19,8 @@ def crear_grafo_desde_matriz(matriz):
         for j, valor in enumerate(fila):
             if valor != 0:  # Si hay una conexión
                 G.add_edge(i, j, weight=valor)
+                if i != j and matriz[j][i] != 0:  # Asegura que la conexión opuesta también esté representada
+                    G.add_edge(j, i, weight=matriz[j][i])
     return G
 
 # Solicitar las dimensiones de la matriz al usuario

@@ -1,7 +1,7 @@
-fila1 = [2, 3, -1]
-fila2 = [4,-1, 2]
-fila3 = [3, 2, 1]
-fila_extra = [7, -1, 4]
+fila1 = [2, 1, -1]
+fila2 = [1,-3, 2]
+fila3 = [3, 2, -4]
+fila_extra = [4, -1, 7]
 
 
 def imprecion(fila1, fila2, fila3):
