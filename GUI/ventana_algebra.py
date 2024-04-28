@@ -3,6 +3,7 @@ from tkinter import ttk
 from tkinter import Toplevel
 from GUI.ventana_operaciones_matrices import VentanaOperacionesMatrices
 from GUI.ventana_matriz_inversa import VentanaMatrizInversa
+from GUI.ventana_determinante_matriz import VentanaMatrizDeterminante
 
 class VentanaAlgebra(Toplevel):
     def __init__(self, parent):
@@ -42,7 +43,9 @@ class VentanaAlgebra(Toplevel):
         nueva_ventana.grab_set()
     
     def abrir_ventana_determinante_matriz(self):
-        pass
+        self.withdraw()
+        nueva_ventana = VentanaMatrizDeterminante(self)
+        nueva_ventana.grab_set()
 
     def abrir_ventana_rango_matriz(self):
         pass

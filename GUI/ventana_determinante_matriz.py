@@ -3,12 +3,14 @@ from tkinter import ttk
 from tkinter import Toplevel
 from tkinter import simpledialog, messagebox
 from MatrizInversa.matriz_inversa import MatrizInversa
+from MetodoCoeficientes.metodo_coeficientes import DeterminanteMatriz
+from MetodoCoeficientes.metodo_coeficientes import MatrixOperations
 
-class VentanaMatrizInversa(tk.Toplevel):
+class VentanaMatrizDeterminante(tk.Toplevel):
     def __init__(self, parent):
         super().__init__(parent)
         self.parent = parent
-        self.title("Matriz Inversa")
+        self.title("Determinante Matriz")
         self.geometry("500x400")
         self.matriz_entries = []
 
@@ -37,10 +39,8 @@ class VentanaMatrizInversa(tk.Toplevel):
             messagebox.showerror("Error", "Debe ingresar una matriz cuadrada.")
 
     def create_matrix_entries(self, rows, columns):
-        # Limpiar el frame anterior de cualquier widget que pudiera tener
         for widget in self.frame.winfo_children():
             widget.destroy()
-
         self.matriz_entries = []
         for i in range(rows):
             row_entries = []
@@ -52,29 +52,12 @@ class VentanaMatrizInversa(tk.Toplevel):
 
     def process_matrix(self):
         try:
-            matriz = []
-            for row_entries in self.matriz_entries:
-                row = [float(entry.get()) for entry in row_entries]
-                matriz.append(row)
-        
-            # Crear una instancia de MatrizInversa y calcular la inversa
-            mi = MatrizInversa(matriz)
-            inversa = mi.calcular_inversa()
-
-            # Mostrar la matriz inversa en una nueva ventana o de otra forma
-            result_window = tk.Toplevel(self)
-            result_window.title("Matriz Inversa")
-            for i, row in enumerate(inversa):
-                for j, val in enumerate(row):
-                    label = ttk.Label(result_window, text=f"{val:.2f}")
-                    label.grid(row=i, column=j, padx=5, pady=5)
-                
-            print("Matrix values:")
-            for row in inversa:
-                print(row)
-        except ValueError as e:
+            matriz = [[float(entry.get()) for entry in row_entries] for row_entries in self.matriz_entries]
+            determinante = MatrixOperations.calculate_determinant(matriz)
+            messagebox.showinfo("Resultado", f"La determinante de la matriz es: {determinante:.2f}")
+        except ValueError:
             messagebox.showerror("Error", "Por favor, asegúrese de que todos los campos contengan números válidos.")
 
     def regresar(self):
-        self.destroy()  # Cerrar esta ventana
-        self.parent.deiconify()  # Mostrar la ventana principal
+        self.destroy()
+        self.parent.deiconify()
