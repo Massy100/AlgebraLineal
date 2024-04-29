@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import Toplevel
+from GUI.ventana_markov import VentanaCadenaMarkov
 
 class VentanaSimulacion(Toplevel):
     def __init__(self, parent):
@@ -21,7 +22,9 @@ class VentanaSimulacion(Toplevel):
         button_regresar.pack(side=tk.TOP, fill=tk.X, padx=10, pady=5)
         
     def abrir_ventana_cadenas_markov(self):
-        pass
+        self.withdraw()
+        nueva_ventana = VentanaCadenaMarkov(self)
+        nueva_ventana.grab_set()
 
     def regresar(self):
         self.destroy()
