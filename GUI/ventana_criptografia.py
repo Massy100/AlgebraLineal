@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import Toplevel
-
+from GUI.ventana_codificador import VentanaCifradoMatrices
 class VentanaCriptografia(Toplevel):
     def __init__(self, parent):
         super().__init__(parent)
@@ -21,7 +21,9 @@ class VentanaCriptografia(Toplevel):
         button_regresar.pack(side=tk.TOP, fill=tk.X, padx=10, pady=5)
         
     def abrir_ventana_cifrado_matrices(self):
-        pass
+        self.withdraw()
+        nueva_ventana = VentanaCifradoMatrices(self)
+        nueva_ventana.grab_set()
 
     def regresar(self):
         self.destroy()

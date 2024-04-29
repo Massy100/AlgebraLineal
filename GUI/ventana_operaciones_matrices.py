@@ -3,6 +3,7 @@ from tkinter import ttk
 from tkinter import Toplevel
 from GUI.ventana_suma_matrices import VentanaSumaMatrices
 from GUI.ventana_resta_matrices import VentanaRestaMatrices
+from GUI.ventana_multiplicacion_matrices import VentanaMultiplicacionMatrices
 
 class VentanaOperacionesMatrices(Toplevel):
     def __init__(self, parent):
@@ -42,7 +43,9 @@ class VentanaOperacionesMatrices(Toplevel):
         nueva_ventana.grab_set()
     
     def abrir_ventana_multiplicacion_matrices(self):
-        pass
+        self.withdraw()
+        nueva_ventana = VentanaMultiplicacionMatrices(self)
+        nueva_ventana.grab_set()
 
     def abrir_ventana_producto_punto_matrices(self):
         pass

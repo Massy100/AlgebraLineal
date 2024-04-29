@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import Toplevel
 from tkinter import simpledialog, messagebox
-from OperacionesMatrices.suma import SumaMatrices  # Si tienes una clase para sumar, puede necesitar ajustes para restar
+from OperacionesMatrices.suma import SumaMatrices
 
 class VentanaRestaMatrices(Toplevel):
     def __init__(self, parent):
