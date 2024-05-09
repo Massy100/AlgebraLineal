@@ -53,8 +53,13 @@ class VentanaMatrizDeterminante(tk.Toplevel):
     def process_matrix(self):
         try:
             matriz = [[float(entry.get()) for entry in row_entries] for row_entries in self.matriz_entries]
-            determinante = MatrixOperations.calculate_determinant(matriz)
-            messagebox.showinfo("Resultado", f"La determinante de la matriz es: {determinante:.2f}")
+            determinante, details = MatrixOperations.calculate_determinant(matriz)
+            details_window = tk.Toplevel(self)
+            details_window.title("Detalles del Cálculo del Determinante")
+            for i, detail in enumerate(details):
+                label = ttk.Label(details_window, text=detail)
+                label.grid(row=i, column=0, sticky="w")
+            messagebox.showinfo("Resultado", f"El determinante de la matriz es: {determinante:.2f}")
         except ValueError:
             messagebox.showerror("Error", "Por favor, asegúrese de que todos los campos contengan números válidos.")
 

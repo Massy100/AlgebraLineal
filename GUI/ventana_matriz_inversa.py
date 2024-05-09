@@ -20,8 +20,8 @@ class VentanaMatrizInversa(tk.Toplevel):
         self.start_button = ttk.Button(self, text="Iniciar", command=self.ask_dimensions)
         self.start_button.pack(pady=20)
 
-        # Botón para calcular la determinante
-        self.calc_button = ttk.Button(self, text="Calcular Determinante", command=self.process_matrix)
+        # Botón para calcular la inversa
+        self.calc_button = ttk.Button(self, text="Calcular Inversa", command=self.process_matrix)
         self.calc_button.pack(pady=10)
 
         # Botón de regresar
@@ -52,28 +52,25 @@ class VentanaMatrizInversa(tk.Toplevel):
 
     def process_matrix(self):
         try:
-            matriz = []
-            for row_entries in self.matriz_entries:
-                row = [float(entry.get()) for entry in row_entries]
-                matriz.append(row)
-        
-            # Crear una instancia de MatrizInversa y calcular la inversa
+            matriz = [[float(entry.get()) for entry in row_entries] for row_entries in self.matriz_entries]
             mi = MatrizInversa(matriz)
             inversa = mi.calcular_inversa()
 
-            # Mostrar la matriz inversa en una nueva ventana o de otra forma
             result_window = tk.Toplevel(self)
-            result_window.title("Matriz Inversa")
+            result_window.title("Procedimiento Matriz Inversa")
+            row_count = 0
+            for detail in mi.detalles:
+                label = ttk.Label(result_window, text=detail)
+                label.grid(row=row_count, column=0, padx=5, pady=5, sticky="w")
+                row_count += 1
             for i, row in enumerate(inversa):
                 for j, val in enumerate(row):
                     label = ttk.Label(result_window, text=f"{val:.2f}")
-                    label.grid(row=i, column=j, padx=5, pady=5)
-                
-            print("Matrix values:")
-            for row in inversa:
-                print(row)
+                    label.grid(row=row_count, column=j, padx=5, pady=5)
+                row_count += 1
+
         except ValueError as e:
-            messagebox.showerror("Error", "Por favor, asegúrese de que todos los campos contengan números válidos.")
+            messagebox.showerror("Error", "La matriz no tiene inversa")
 
     def regresar(self):
         self.destroy()  # Cerrar esta ventana

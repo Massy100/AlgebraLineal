@@ -71,15 +71,30 @@ class VentanaRestaMatrices(Toplevel):
 
     def process_matrix(self):
         try:
+            # Extraer los datos de las entradas de las matrices
             m1 = [[float(entry.get()) for entry in row] for row in self.matriz1_entries]
             m2 = [[float(entry.get()) for entry in row] for row in self.matriz2_entries]
-            result = [[m1[i][j] - m2[i][j] for j in range(len(m1[0]))] for i in range(len(m1))]
 
+            # Calcular la resta de las matrices y preparar los detalles del cálculo
+            result = []
+            calculation_details = []
+
+            for i in range(len(m1)):
+                result_row = []
+                detail_row = []
+                for j in range(len(m1[0])):
+                    subtract_result = m1[i][j] - m2[i][j]
+                    result_row.append(subtract_result)
+                    detail_row.append(f"{m1[i][j]} - {m2[i][j]} = {subtract_result:.2f}")
+                result.append(result_row)
+                calculation_details.append(detail_row)
+
+            # Mostrar la matriz resultado y los detalles del cálculo en una nueva ventana
             result_window = tk.Toplevel(self)
-            result_window.title("Resultado de la Resta")
-            for i, row in enumerate(result):
-                for j, val in enumerate(row):
-                    label = ttk.Label(result_window, text=f"{val:.2f}")
+            result_window.title("Procedimiento Resta")
+            for i, (row, details) in enumerate(zip(result, calculation_details)):
+                for j, (val, detail) in enumerate(zip(row, details)):
+                    label = ttk.Label(result_window, text=detail)
                     label.grid(row=i, column=j, padx=5, pady=5)
 
         except ValueError:

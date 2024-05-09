@@ -29,8 +29,29 @@ import numpy as np
 
 class MatrixOperations:
     @staticmethod
-    def calculate_determinant(matrix):
-        # Convertimos la lista en un array de numpy para facilitar las operaciones
-        a = np.array(matrix)
-        return np.linalg.det(a)
+    def get_minor(matrix, i, j):
+        return [row[:j] + row[j+1:] for row in (matrix[:i] + matrix[i+1:])]
+
+    @staticmethod
+    def calculate_determinant(matrix, depth=0):
+        details = []
+        if len(matrix) == 1:
+            details.append(f"Determinante de {matrix} es {matrix[0][0]}")
+            return matrix[0][0], details
+        if len(matrix) == 2:
+            result = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
+            details.append(f"Determinante de {matrix} es {result}")
+            return result, details
+        determinant = 0
+        for c in range(len(matrix)):
+            minor = MatrixOperations.get_minor(matrix, 0, c)
+            cofactor, cofactor_details = MatrixOperations.calculate_determinant(minor, depth + 1)
+            sign = (-1) ** c
+            determinant += sign * matrix[0][c] * cofactor
+            details.extend(cofactor_details)
+            details.append(f"m[0][{c}]={matrix[0][c]}, cofactor={cofactor}, sign={sign}, partial det={determinant}")
+        details.append(f"Determinante de {matrix} es {determinant}")
+        return determinant, details
+
+
 

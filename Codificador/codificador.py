@@ -115,15 +115,36 @@ def matriz_inversa_descifrado(texto_cifrado):
     return mensaje_decodificado
 
 def matriz_inversa_cifrado(mensaje_usuario):
+    # Paso 1: Reordenar mensaje
     matriz_codificada = reordenar(mensaje_usuario)
+    resultado_reordenar = f"Matriz Reordenada: {matriz_codificada}\n"
+
+    # Paso 2: Multiplicar por clave
     resultado_multiplicacion = multiplicar_matrices(clave, matriz_codificada)
+    resultado_cifrado = f"Resultado Multiplicación (Cifrado): {resultado_multiplicacion}\n"
+
+    # Paso 3: Convertir a texto
     texto_final = matriz_a_texto(resultado_multiplicacion)
-    
+    texto_cifrado = f"Texto Cifrado: {texto_final}\n"
+
+    # Paso 4: Multiplicar por clave inversa
     resultado_multiplicacion_inversa = multiplicar_matrices(clave_inversa, resultado_multiplicacion)
+    resultado_descifrado = f"Resultado Multiplicación Inversa (Descifrado): {resultado_multiplicacion_inversa}\n"
+
+    # Paso 5: Convertir a texto (inversa)
     texto_final_inversa = matriz_a_texto(resultado_multiplicacion_inversa)
+    texto_descifrado = f"Texto Descifrado: {texto_final_inversa}\n"
+
+    # Paso 6: Decodificar mensaje
     mensaje_decodificado = decodificar_mensaje(texto_final_inversa)
-    
-    return texto_final, mensaje_decodificado
+    mensaje_final_decodificado = f"Mensaje Decodificado: {mensaje_decodificado}\n"
+
+    # Concatenar todos los resultados
+    resultado_completo = (resultado_reordenar + resultado_cifrado + texto_cifrado +
+                          resultado_descifrado + texto_descifrado)
+
+    return resultado_completo
+
 
 def cifrar_mensaje(mensaje_usuario):
     matriz_codificada = reordenar(mensaje_usuario)

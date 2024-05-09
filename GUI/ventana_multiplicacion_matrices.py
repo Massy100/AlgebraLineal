@@ -77,21 +77,34 @@ class VentanaMultiplicacionMatrices(tk.Toplevel):
             m1 = [[float(entry.get()) for entry in row] for row in self.matriz1_entries]
             m2 = [[float(entry.get()) for entry in row] for row in self.matriz2_entries]
             result = []
-            for i in range(self.rows1):
-                result_row = []
-                for j in range(self.cols2):
-                    cell_sum = 0
-                    for k in range(self.cols1):  
-                        cell_sum += m1[i][k] * m2[k][j]
-                    result_row.append(cell_sum)
-                result.append(result_row)
 
+            # Crear ventana de resultados
             result_window = tk.Toplevel(self)
-            result_window.title("Resultado de la Multiplicación")
-            for i, row in enumerate(result):
-                for j, val in enumerate(row):
-                    label = ttk.Label(result_window, text=f"{val:.2f}")
-                    label.grid(row=i, column=j, padx=5, pady=5)
+            result_window.title("Procedimiento Multiplicación")
+
+            row_count = 0  # Contador para las filas en la ventana de resultado
+
+            for i in range(len(m1)):
+                result_row = []  # Inicializar la fila del resultado para la nueva fila de matriz
+                for j in range(len(m2[0])):
+                    cell_sum = 0
+                    step_details = ""  # Para almacenar los detalles del cálculo de cada celda
+
+                    for k in range(len(m1[0])):
+                        partial_result = m1[i][k] * m2[k][j]
+                        cell_sum += partial_result
+                        step_details += f"({m1[i][k]} * {m2[k][j]}) + "
+
+                    # Eliminar el último "+ "
+                    step_details = step_details.strip().rstrip('+').strip()
+
+                    # Añadir al resultado final y mostrar el detalle en la ventana
+                    result_row.append(cell_sum)
+                    detail_label = ttk.Label(result_window, text=f"m[{i}][{j}] = {step_details} = {cell_sum:.2f}")
+                    detail_label.grid(row=row_count, column=0, padx=5, pady=5)
+                    row_count += 1
+
+                result.append(result_row)
 
         except ValueError:
             messagebox.showerror("Error", "Por favor, asegúrese de que todos los campos contengan números válidos.")
