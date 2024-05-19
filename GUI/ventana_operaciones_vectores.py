@@ -13,7 +13,7 @@ class VentanaOperacionesVectores(Toplevel):
         self.title("Operaciones de Vectores")
         self.geometry("500x400")
 
-        # Crear un frame para contener los botones y centrarlos
+
         frame = ttk.Frame(self)
         frame.pack(expand=True)
 
