@@ -1,53 +1,53 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import Toplevel
-from GUI.ventana_suma_vectores import VentanaSumaVectores
-from GUI.ventana_cruz_vectores import VentanaCruzVectores
-from GUI.ventana_punto_vectores import VentanaPuntoVectores
-from GUI.ventana_grafica_vectores import VentanaGraficaVectores
+from GUI.ventana_caso1 import VentanaCaso1
+from GUI.ventana_caso3 import VentanaCaso3
+from GUI.ventana_caso2 import VentanaCaso2
+from GUI.ventana_caso4 import VentanaCaso4
 
-class VentanaOperacionesVectores(Toplevel):
+class VentanaGraficaVectores(Toplevel):
     def __init__(self, parent):
         super().__init__(parent)
         self.parent = parent
-        self.title("Operaciones de Vectores")
+        self.title("Opciones Grafica de Vectores")
         self.geometry("500x400")
 
         # Crear un frame para contener los botones y centrarlos
         frame = ttk.Frame(self)
         frame.pack(expand=True)
 
-        button0 = ttk.Button(frame, text="Grafica Vectores", command=self.abrir_grafica_vectores)
+        button0 = ttk.Button(frame, text="Ambos Componentes", command=self.abrir_caso_1)
         button0.pack(side=tk.TOP, fill=tk.X, padx=10, pady=5)
-        button1 = ttk.Button(frame, text="Suma Vectores", command=self.abrir_suma_vectores)
+        button1 = ttk.Button(frame, text="Componente y Magnitud", command=self.abrir_caso_2)
         button1.pack(side=tk.TOP, fill=tk.X, padx=10, pady=5)
-        button2 = ttk.Button(frame, text="Producto Punto Vectores", command=self.abrir_punto_vectores)
+        button2 = ttk.Button(frame, text="Magnitud y Angulo", command=self.abrir_caso_3)
         button2.pack(side=tk.TOP, fill=tk.X, padx=10, pady=5)
-        button3 = ttk.Button(frame, text="Producto Cruz Vectores", command=self.abrir_cruz_vectores)
+        button3 = ttk.Button(frame, text="Componente y Angulo", command=self.abrir_caso_4)
         button3.pack(side=tk.TOP, fill=tk.X, padx=10, pady=5)
 
         # Botón de regresar, colocado en la esquina inferior derecha
         button_regresar = tk.Button(frame, text="Regresar", command=self.regresar)
         button_regresar.pack(side=tk.TOP, fill=tk.X, padx=10, pady=5)
         
-    def abrir_suma_vectores(self):
+    def abrir_caso_1(self):
         self.withdraw()
-        nueva_ventana = VentanaSumaVectores(self)
+        nueva_ventana = VentanaCaso1(self)
         nueva_ventana.grab_set()
         
-    def abrir_grafica_vectores(self):
+    def abrir_caso_2(self):
         self.withdraw()
-        nueva_ventana = VentanaGraficaVectores(self)
+        nueva_ventana = VentanaCaso2(self)
         nueva_ventana.grab_set()
     
-    def abrir_punto_vectores(self):
+    def abrir_caso_3(self):
         self.withdraw()
-        nueva_ventana = VentanaCruzVectores(self)
+        nueva_ventana = VentanaCaso3(self)
         nueva_ventana.grab_set()
     
-    def abrir_cruz_vectores(self):
+    def abrir_caso_4(self):
         self.withdraw()
-        nueva_ventana = VentanaPuntoVectores(self)
+        nueva_ventana = VentanaCaso4(self)
         nueva_ventana.grab_set()
 
     def regresar(self):
