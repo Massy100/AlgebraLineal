@@ -25,9 +25,6 @@ class VentanaOperacionesMatrices(Toplevel):
         button3 = ttk.Button(frame, text="Multiplicación de matrices", command=self.abrir_ventana_multiplicacion_matrices)
         button3.pack(side=tk.TOP, fill=tk.X, padx=10, pady=5)
 
-        button4 = ttk.Button(frame, text="Producto punto de matrices", command=self.abrir_ventana_producto_punto_matrices)
-        button4.pack(side=tk.TOP, fill=tk.X, padx=10, pady=5)
-
         # Botón de regresar, colocado en la esquina inferior derecha
         button_regresar = tk.Button(frame, text="Regresar", command=self.regresar)
         button_regresar.pack(side=tk.TOP, fill=tk.X, padx=10, pady=5)
@@ -46,9 +43,6 @@ class VentanaOperacionesMatrices(Toplevel):
         self.withdraw()
         nueva_ventana = VentanaMultiplicacionMatrices(self)
         nueva_ventana.grab_set()
-
-    def abrir_ventana_producto_punto_matrices(self):
-        pass
     
     def regresar(self):
         self.destroy()

@@ -28,7 +28,7 @@ class VentanaCadenaMarkov(tk.Toplevel):
         self.graph_button.pack(pady=10)
         #self.graph_button.config(state=tk.DISABLED) 
 
-        self.button_regresar = ttk.Button(self, text="Regresar", command=self.destroy)
+        self.button_regresar = ttk.Button(self, text="Regresar", command=self.regresar)
         self.button_regresar.pack(pady=20)
 
         self.output_text = tk.Text(self, height=15, width=50)
