@@ -1,12 +1,17 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import Toplevel
+from tkinter import messagebox
+import matplotlib.pyplot as plt
+import networkx as nx
+import math
+from OperacionesConVectores import vector_por_grados
 
 class VentanaPuntoVectores(Toplevel):
     def __init__(self, parent):
         super().__init__(parent)
         self.parent = parent
-        self.title("Producto Punto de Vectores")
+        self.title("Creacion de Vectores")
         self.geometry("500x400")
 
         # Crear un frame para contener los botones y centrarlos
@@ -21,7 +26,7 @@ class VentanaPuntoVectores(Toplevel):
         button_regresar.pack(side=tk.TOP, fill=tk.X, padx=10, pady=5)
         
     def calcular(self):
-        pass
+        vector_por_grados.main()
 
     def regresar(self):
         self.destroy()
