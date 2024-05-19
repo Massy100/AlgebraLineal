@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import Toplevel
-from GUI.ventana_suma_vectores import VentanaSumaVectores
+from GUI.ventana_notacion_vectores import VentanaSumaVectores
 from GUI.ventana_cruz_vectores import VentanaCruzVectores
 from GUI.ventana_punto_vectores import VentanaPuntoVectores
 from GUI.ventana_grafica_vectores import VentanaGraficaVectores
@@ -19,7 +19,7 @@ class VentanaOperacionesVectores(Toplevel):
 
         button0 = ttk.Button(frame, text="Grafica Vectores", command=self.abrir_grafica_vectores)
         button0.pack(side=tk.TOP, fill=tk.X, padx=10, pady=5)
-        button1 = ttk.Button(frame, text="Suma Vectores", command=self.abrir_suma_vectores)
+        button1 = ttk.Button(frame, text="Suma y Resta Vectores", command=self.abrir_suma_vectores)
         button1.pack(side=tk.TOP, fill=tk.X, padx=10, pady=5)
         button2 = ttk.Button(frame, text="Producto Punto Vectores", command=self.abrir_punto_vectores)
         button2.pack(side=tk.TOP, fill=tk.X, padx=10, pady=5)
@@ -42,12 +42,12 @@ class VentanaOperacionesVectores(Toplevel):
     
     def abrir_punto_vectores(self):
         self.withdraw()
-        nueva_ventana = VentanaCruzVectores(self)
+        nueva_ventana = VentanaPuntoVectores(self)
         nueva_ventana.grab_set()
     
     def abrir_cruz_vectores(self):
         self.withdraw()
-        nueva_ventana = VentanaPuntoVectores(self)
+        nueva_ventana = VentanaCruzVectores(self)
         nueva_ventana.grab_set()
 
     def regresar(self):
