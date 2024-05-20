@@ -4,6 +4,7 @@ from tkinter import Toplevel
 from GUI.ventana_operaciones_matrices import VentanaOperacionesMatrices
 from GUI.ventana_matriz_inversa import VentanaMatrizInversa
 from GUI.ventana_determinante_matriz import VentanaMatrizDeterminante
+from OperacionesMatrices import rango_mat
 
 class VentanaAlgebra(Toplevel):
     def __init__(self, parent):
@@ -48,8 +49,9 @@ class VentanaAlgebra(Toplevel):
         nueva_ventana.grab_set()
 
     def abrir_ventana_rango_matriz(self):
-        pass
-    
+        self.withdraw()
+        nueva_ventana = rango_mat.VentanaRangoMatriz(self)
+        nueva_ventana.grab_set()
     def regresar(self):
         self.destroy()
         self.parent.deiconify()
