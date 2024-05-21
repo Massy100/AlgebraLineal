@@ -57,13 +57,15 @@ class VentanaCaso3(tk.Toplevel):
         
             # Determinar la dirección
             if 0 <= angulo < 90:
-                direccion = "NE"
+                direccion = "Ya que el angulo comprendido esta en el primer cuadrante se sabe que es EN"
             elif 90 <= angulo < 180:
-                direccion = "NO"
+                direccion = "Ya que el angulo comprendido esta en el segundo cuadrante se sabe que es NO"
             elif 180 <= angulo < 270:
-                direccion = "SO"
+                direccion = "Ya que el angulo comprendido esta en el tercer cuadrante se sabe que es SO"
             elif 270 <= angulo < 360:
-                direccion = "SE"
+                direccion = "Ya que el angulo comprendido esta en el cuarto cuadrante se sabe que es SE"
+            else:
+                direccion = "Un angulo negativo no es manejable por este programa"
             self.label_direccion.config(text=f"Dirección: {direccion}")
         
             # Crear la gráfica del vector

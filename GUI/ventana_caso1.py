@@ -3,6 +3,7 @@ from tkinter import messagebox
 import matplotlib.pyplot as plt
 import math
 
+
 class VentanaCaso1(tk.Toplevel):
     def __init__(self, master):
         super().__init__(master)
@@ -47,32 +48,32 @@ class VentanaCaso1(tk.Toplevel):
         
             # Calcular la magnitud
             magnitud = math.sqrt(x**2 + y**2)
-            self.label_magnitud.config(text=f"Magnitud: √({x}² + {y}²) = {magnitud:.2f}")
+            self.label_magnitud.config(text=f"Paso 1: Encontrar la magnitud:\n√({x}² + {y}²)\n√({x ** 2} + {y ** 2})\n√({x ** 2 + y ** 2})\nResultado: {magnitud:.2f}")
         
             # Calcular el ángulo en grados
             angulo = math.degrees(math.atan2(y, x))
-            self.label_angulo.config(text=f"Ángulo: arctan({y}/{x}) = {angulo:.2f}°")
+            self.label_angulo.config(text=f"Paso 2: Encontrar el ángulo: \narctan({y}/{x})\narctan({y/x})\nResultado: {angulo:.2f}°")
         
             # Determinar la dirección
             if x > 0 and y > 0:
-                direccion = "NE"
+                direccion = "Es NE dado que X y Y son positivos"
             elif x < 0 and y > 0:
-                direccion = "NO"
+                direccion = "Es NO dado que X es negativo y Y es positivo"
             elif x < 0 and y < 0:
-                direccion = "SO"
+                direccion = "Es SO dado que X y Y son negativos"
             elif x > 0 and y < 0:
-                direccion = "SE"
+                direccion = "Es SE dado que X es positivo y Y es negativo"
             elif x == 0 and y > 0:
-                direccion = "N"
+                direccion = "Es N ya que este es 0 en X y Y es positivo"
             elif x == 0 and y < 0:
-                direccion = "S"
+                direccion = "Es S ya que este es 0 en X y Y es negativo"
             elif x > 0 and y == 0:
-                direccion = "E"
+                direccion = "Es E ya que este es 0 en Y y X es positivo"
             elif x < 0 and y == 0:
-                direccion = "O"
+                direccion = "Es O ya que este es 0 en Y y X es negativo"
             else:
-                direccion = "Origen"
-            self.label_direccion.config(text=f"Dirección: {direccion}")
+                direccion = "Ya qye X es 0 y Y es 0 este solo se encuentra en el origen"
+            self.label_direccion.config(text=f"Paso 3: Encontrar la dirección:\n {direccion}")
         
             # Crear la gráfica del vector
             plt.figure()

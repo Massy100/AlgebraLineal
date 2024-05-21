@@ -59,26 +59,28 @@ class VentanaCaso2(tk.Toplevel):
             if componente_tipo == 'X':
                 x = componente
                 y = math.sqrt(magnitud**2 - x**2)
-                self.label_complementario.config(text=f"Componente Y: sqrt({magnitud}^2 - {x}^2) = {y:.2f}")
+                self.label_complementario.config(text=f"Paso 1: Encontrar el componente en Y:\nPara esto se debe usar la identidad pitagorica sqrt(magnitud^2 - cateto^2) \nsqrt({magnitud}^2 - {x}^2)\nsqrt({magnitud ** 2} - {x ** 2})\nsqrt({magnitud ** 2 - x ** 2})\n Resultado: {y:.2f}")
                 angulo = math.degrees(math.atan2(y, x))
             else:
                 y = componente
                 x = math.sqrt(magnitud**2 - y**2)
-                self.label_complementario.config(text=f"Componente X: sqrt({magnitud}^2 - {y}^2) = {x:.2f}")
+                self.label_complementario.config(text=f"Paso 1: Encontrar el componente en X:\nPara esto se debe usar la identidad pitagorica sqrt(magnitud^2 - cateto^2) \nsqrt({magnitud}^2 - {y}^2)\nsqrt({magnitud ** 2} - {y ** 2})\nsqrt({magnitud ** 2 - y ** 2})\nResultado: {x:.2f}")
                 angulo = math.degrees(math.atan2(y, x))
             
-            self.label_angulo.config(text=f"Ángulo: atan2({y:.2f}, {x:.2f}) = {angulo:.2f} grados")
+            self.label_angulo.config(text=f"Paso 2: Encontrar el ángulo:\nPara esto debemos encontrar la tangente inversa de (y, x)\n atan2({y:.2f}, {x:.2f}) \nResultado: {angulo:.2f} grados")
         
             # Determinar la dirección
             if 0 <= angulo < 90:
-                direccion = "NE"
+                direccion = "Es NE dado que X y Y son positivos"
             elif 90 <= angulo < 180:
-                direccion = "NO"
+                direccion = "Es NO dado que X es negativo y Y es positivo"
             elif 180 <= angulo < 270:
-                direccion = "SO"
+                direccion = "Es SO dado que X y Y son negativos"
             elif 270 <= angulo < 360:
-                direccion = "SE"
-            self.label_direccion.config(text=f"Dirección: {direccion}")
+                direccion = "Es SE dado que X es positivo y Y es negativo"
+            else:
+                direccion = "Un angulo negativo no es manejable por este programa"
+            self.label_direccion.config(text=f"Paso 3: Encontrar la dirección:\n {direccion}")
         
             # Crear la gráfica del vector
             plt.figure()

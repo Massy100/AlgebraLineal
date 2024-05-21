@@ -8,7 +8,7 @@ class VentanaCaso4(tk.Toplevel):
     def __init__(self, parent):
         super().__init__(parent)
         self.title("Ventana Caso")
-        self.geometry("400x400")
+        self.geometry("400x500")
         self.parent = parent
 
         # Etiqueta y campo de texto para el componente
@@ -47,38 +47,53 @@ class VentanaCaso4(tk.Toplevel):
 
     def calcular(self):
         try:
-            # Obtener el componente y el ángulo
+            # Obtener el componente, angulo y direccion del componente
+            componenete_D = self.combo_componente.get()
             componente = float(self.entry_componente.get())
             angulo = float(self.entry_angulo.get())
 
+
+
             # Calcular la magnitud
-            magnitud = math.sqrt(componente ** 2 + componente ** 2)
+            if componenete_D == 'X':
+                magnitud = round(componente / math.cos(math.radians(angulo)), 2)
+                direct = 'cos'
+            else:
+                magnitud = round(componente / math.sin(math.radians(angulo)), 2)
+                direct = 'sin'
+
+            if magnitud < 0:
+                magnitud *= -1
+
+
+
 
             # Calcular el componente complementario
-            componente_complementario = magnitud * math.sin(math.radians(angulo))
+            componente_complementario = round(math.sqrt(magnitud ** 2 - componente ** 2), 2)
 
             # Calcular la dirección
             if angulo < 0 or angulo >= 360:
                 raise ValueError("El ángulo debe estar entre 0 y 360 grados.")
 
             if 0 <= angulo < 90:
-                direccion = "NE"
+                direccion = "Ya que el angulo comprendido esta en el primer cuadrante se sabe que es EN"
             elif 90 <= angulo < 180:
-                direccion = "NO"
+                direccion = "Ya que el angulo comprendido esta en el segundo cuadrante se sabe que es NO"
             elif 180 <= angulo < 270:
-                direccion = "SO"
+                direccion = "Ya que el angulo comprendido esta en el tercer cuadrante se sabe que es SO"
             else:
-                direccion = "SE"
+                direccion = "Ya que el angulo comprendido esta en el cuarto cuadrante se sabe que es SE"
 
             # Mostrar los resultados
-            self.label_resultados.config(text=f"Magnitud: {magnitud:.2f}\nComponente complementario: {componente_complementario:.2f}\nDirección: {direccion}")
+            self.label_resultados.config(text=f"Paso 1: Encontrar la magnitud\nPara esto usaremos componenete / {direct}(angulo)\n {componente} / {direct}{angulo}\nResultado: {magnitud:.2f}\nPaso 2: Encontrar el componente complementario:\n pare esto siempre usaremos sqrt(magnitud^2 - componente^2)\nsqrt({magnitud}^2 - {componente}^2)\nsqrt({round(magnitud ** 2, 2)} - {round(componente ** 2,2)}) \nResultado: {componente_complementario:.2f}\nDirección:\n {direccion}")
 
             # Habilitar el botón de graficar
             self.btn_graficar.config(state=tk.NORMAL)
 
             # Almacenar la magnitud y la dirección para poder usarlas en el método graficar
             self.magnitud = magnitud
-            self.direccion = direccion
+            self.co_co = componente_complementario
+            self.componenete_D = componenete_D
 
         except ValueError as e:
             messagebox.showerror("Error", str(e))
@@ -87,26 +102,32 @@ class VentanaCaso4(tk.Toplevel):
         try:
             # Obtener el componente
             componente = float(self.entry_componente.get())
-
-            # Calcular los componentes x e y
-            x = componente
-            y = componente
+            grados = float(self.entry_angulo.get())
+            if self.componenete_D == 'X':
+                x = componente
+                y = self.co_co
+            else:
+                x = self.co_co
+                y = componente
 
             # Ajustar el signo de los componentes dependiendo del ángulo y la dirección
-            if self.direccion == "NE":
-                pass  # Los componentes ya están en el primer cuadrante
-            elif self.direccion == "NO":
-                x = -x  # Ajustar para el segundo cuadrante
-            elif self.direccion == "SO":
-                x = -x  # Ajustar para el tercer cuadrante
-                y = -y  # Ajustar para el tercer cuadrante
+            if 0 <= grados <= 90:
+                direccion = 'EN'
+            elif 90 < grados <= 180:
+                x = -x
+                direccion = 'NO'
+            elif 180 < grados <= 270:
+                y = -y
+                x = -x
+                direccion = 'OS'
             else:
-                y = -y  # Ajustar para el cuarto cuadrante
+                y = -y
+                direccion = 'SE'
 
             # Graficar el vector
             plt.figure()
             plt.quiver(0, 0, x, y, angles='xy', scale_units='xy', scale=1, color='r', width=0.005)
-            plt.text(x, y, f"({x:.2f}, {y:.2f})\nMagnitud: {self.magnitud:.2f}\nDirección: {self.direccion}", fontsize=8)
+            plt.text(x, y, f"({x:.2f}, {y:.2f})\nMagnitud: {self.magnitud:.2f}\nDireccion: {direccion}", fontsize=8)
             plt.xlim(-self.magnitud - 1, self.magnitud + 1)
             plt.ylim(-self.magnitud - 1, self.magnitud + 1)
             plt.xlabel("X")
